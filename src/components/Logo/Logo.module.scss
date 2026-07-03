@@ -1,0 +1,8 @@
+@use "../../styles/tokens" as *;
+
+.logo {
+  width: 32px;
+  height: 32px;
+  fill: $color-primary;
+  flex-shrink: 0;
+}

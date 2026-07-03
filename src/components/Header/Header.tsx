@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Logo from "@/components/Logo/Logo";
 import styles from "./Header.module.scss";
 
 export default function Header() {
@@ -12,7 +13,8 @@ export default function Header() {
       <nav className={styles.nav} aria-label="Navigation principale">
         <div className={styles.bar}>
           <Link href="/" className={styles.logo} onClick={() => setIsMenuOpen(false)}>
-            Japan Manga Explorer
+            <Logo />
+            <span className={styles.logoText}>Japan Manga Explorer</span>
           </Link>
 
           <button
@@ -34,20 +36,12 @@ export default function Header() {
           className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ""}`}
         >
           <li>
-            <Link
-              href="/mangas"
-              className={styles.menuLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
+            <Link href="/mangas" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>
               Mangas
             </Link>
           </li>
           <li>
-            <Link
-              href="/lieux"
-              className={styles.menuLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
+            <Link href="/lieux" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>
               Lieux au Japon
             </Link>
           </li>

@@ -2,6 +2,7 @@
 @use "../../styles/mixins" as *;
 
 .header {
+  background-color: $color-background;
   border-bottom: 1px solid $color-border;
   padding: $space-4;
 }
@@ -18,10 +19,14 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
   font-size: $font-size-lg;
   font-weight: 700;
   color: $color-text;
   text-decoration: none;
+  transition: color 0.2s ease;
 
   &:hover,
   &:focus-visible {
@@ -29,7 +34,10 @@
   }
 }
 
-// Bouton burger — visible uniquement en dessous du breakpoint tablette
+.logoText {
+  letter-spacing: 0.02em;
+}
+
 .burger {
   display: flex;
   align-items: center;
@@ -55,6 +63,7 @@
   width: 24px;
   height: 2px;
   background-color: $color-text;
+  transition: background-color 0.2s ease;
 
   &::before,
   &::after {
@@ -64,6 +73,7 @@
     width: 24px;
     height: 2px;
     background-color: $color-text;
+    transition: transform 0.2s ease;
   }
 
   &::before {
@@ -79,22 +89,29 @@
   @include visually-hidden;
 }
 
-// Menu — masqué par défaut sur mobile, affiché seulement si menuOpen
 .menu {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: $space-2;
   list-style: none;
-  margin-top: $space-4;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.3s ease;
+  margin-top: 0;
 
   &.menuOpen {
-    display: flex;
+    max-height: 300px;
+    opacity: 1;
+    margin-top: $space-4;
   }
 
   @include from-tablet {
-    display: flex;
     flex-direction: row;
     gap: $space-6;
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
     margin-top: 0;
   }
 }
@@ -107,6 +124,7 @@
   display: flex;
   align-items: center;
   min-height: 44px;
+  transition: color 0.2s ease;
 
   @include from-tablet {
     min-height: auto;
