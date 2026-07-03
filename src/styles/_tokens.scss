@@ -1,0 +1,40 @@
+// ==========================================================================
+// DESIGN TOKENS
+// ==========================================================================
+
+// Couleurs
+$color-primary: #d92c2c;      // rouge (clin d'œil torii/drapeau japonais)
+$color-primary-dark: #a11f1f;
+$color-secondary: #1f2937;
+$color-background: #ffffff;
+$color-surface: #f5f5f5;
+$color-text: #1a1a1a;
+$color-text-muted: #5f5f5f;
+$color-border: #e0e0e0;
+
+// Typographie
+$font-family-base: var(--font-geist-sans), system-ui, sans-serif;
+$font-size-base: 1rem;       // 16px — jamais en-dessous pour l'accessibilité
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+
+// Espacements (échelle 4px)
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-12: 3rem;
+
+// Breakpoints (mobile-first : on définit le seuil "à partir de")
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1280px;
+
+// Rayons et ombres
+$radius-sm: 4px;
+$radius-md: 8px;
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);

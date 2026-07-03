@@ -1,0 +1,36 @@
+@use "../styles/tokens" as *;
+@use "../styles/mixins" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  // Respecte les préférences utilisateur de taille de police (accessibilité)
+  font-size: 100%;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $color-text;
+  background-color: $color-background;
+  line-height: 1.5;
+}
+
+a {
+  color: $color-primary;
+}
+
+// Respecte les utilisateurs qui demandent moins d'animations (accessibilité)
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

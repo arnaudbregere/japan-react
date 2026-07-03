@@ -1,0 +1,38 @@
+// ==========================================================================
+// MIXINS RESPONSIVE — approche mobile-first
+// On écrit le style mobile par défaut, puis on surcharge vers le haut
+// ==========================================================================
+
+@use "tokens" as *;
+
+@mixin from-tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin from-desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin from-wide {
+  @media (min-width: $breakpoint-wide) {
+    @content;
+  }
+}
+
+// Visuellement masqué mais accessible aux lecteurs d'écran
+// (à utiliser à la place de display:none pour du contenu utile aux technologies d'assistance)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
