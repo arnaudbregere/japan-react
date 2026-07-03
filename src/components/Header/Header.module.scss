@@ -9,13 +9,12 @@
 .nav {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+}
 
-  @include from-tablet {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
@@ -30,15 +29,73 @@
   }
 }
 
-.menu {
+// Bouton burger — visible uniquement en dessous du breakpoint tablette
+.burger {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @include from-tablet {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.burgerIcon {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background-color: $color-text;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: $color-text;
+  }
+
+  &::before {
+    top: -8px;
+  }
+
+  &::after {
+    top: 8px;
+  }
+}
+
+.visuallyHidden {
+  @include visually-hidden;
+}
+
+// Menu — masqué par défaut sur mobile, affiché seulement si menuOpen
+.menu {
+  display: none;
   flex-direction: column;
   gap: $space-2;
   list-style: none;
+  margin-top: $space-4;
+
+  &.menuOpen {
+    display: flex;
+  }
 
   @include from-tablet {
+    display: flex;
     flex-direction: row;
     gap: $space-6;
+    margin-top: 0;
   }
 }
 
@@ -47,13 +104,12 @@
   text-decoration: none;
   font-size: $font-size-base;
   padding: $space-2 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
 
-  // Zone de clic confortable au doigt (min. 44px recommandé pour le mobile)
-  @media (max-width: $breakpoint-tablet - 1) {
-    display: block;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
+  @include from-tablet {
+    min-height: auto;
   }
 
   &:hover,
