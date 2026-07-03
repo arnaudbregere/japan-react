@@ -1,0 +1,68 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  border-bottom: 1px solid $color-border;
+  padding: $space-4;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  @include from-tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.logo {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-primary;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  list-style: none;
+
+  @include from-tablet {
+    flex-direction: row;
+    gap: $space-6;
+  }
+}
+
+.menuLink {
+  color: $color-text;
+  text-decoration: none;
+  font-size: $font-size-base;
+  padding: $space-2 0;
+
+  // Zone de clic confortable au doigt (min. 44px recommandé pour le mobile)
+  @media (max-width: $breakpoint-tablet - 1) {
+    display: block;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}

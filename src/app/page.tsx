@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Header from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "Accueil",
@@ -8,19 +8,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <header>
-        <nav aria-label="Navigation principale">
-          <Link href="/">Japan Manga Explorer</Link>
-          <ul>
-            <li>
-              <Link href="/mangas">Mangas</Link>
-            </li>
-            <li>
-              <Link href="/lieux">Lieux au Japon</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <main>
         <h1>Explorez mangas et lieux incontournables du Japon</h1>
