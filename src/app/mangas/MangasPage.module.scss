@@ -1,0 +1,45 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/mixins" as *;
+
+.main {
+  padding: $space-6 $space-4;
+
+  @include from-tablet {
+    padding: $space-8;
+  }
+}
+
+.title {
+  font-size: $font-size-2xl;
+  color: $color-primary;
+  text-transform: uppercase;
+  margin-bottom: $space-4;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include from-tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include from-desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.empty {
+  color: $color-text-muted;
+  padding: $space-8 0;
+}
+
+.footer {
+  padding: $space-4;
+  border-top: 1px solid $color-border;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  text-align: center;
+}
