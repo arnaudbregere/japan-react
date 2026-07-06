@@ -1,0 +1,51 @@
+@use "../../styles/tokens" as *;
+
+.card {
+  background-color: $color-surface;
+  border-radius: $radius-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 200 / 280;
+  object-fit: cover;
+  display: block;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 200 / 280;
+  background-color: $color-border;
+}
+
+.content {
+  padding: $space-3;
+}
+
+.title {
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: $color-text;
+  margin-bottom: $space-2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.score {
+  color: $color-primary;
+  font-size: $font-size-sm;
+  margin-bottom: $space-1;
+}
+
+.genres {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
