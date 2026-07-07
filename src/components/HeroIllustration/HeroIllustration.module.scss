@@ -1,0 +1,31 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/mixins" as *;
+
+.illustration {
+  display: none;
+
+  @include from-tablet {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+}
+
+.sun {
+  fill: $color-primary;
+  opacity: 0.9;
+}
+
+.mountain {
+  fill: $color-surface;
+}
+
+.mountainSnow {
+  fill: $color-text;
+  opacity: 0.15;
+}
+
+.torii {
+  fill: $color-primary;
+}

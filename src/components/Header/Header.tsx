@@ -12,10 +12,12 @@ export default function Header() {
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Navigation principale">
         <div className={styles.bar}>
-          <Link href="/" className={styles.logo} onClick={() => setIsMenuOpen(false)}>
+        <Link href="/" className={styles.logo} onClick={() => setIsMenuOpen(false)}>
+          <span className={styles.logoIcon}>
             <Logo />
-            <span className={styles.logoText}>Japan Manga Explorer</span>
-          </Link>
+          </span>
+          <span className={styles.logoText}>Japan Manga Explorer</span>
+        </Link>
 
           <button
             type="button"

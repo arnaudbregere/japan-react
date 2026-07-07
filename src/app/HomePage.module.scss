@@ -5,8 +5,26 @@
   padding: $space-6 $space-4;
 
   @include from-tablet {
-    padding: $space-12 $space-8;
+    padding: $space-8;
   }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding-block: $space-4;
+
+  @include from-tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-12;
+  }
+}
+
+.heroText {
+  flex: 1;
 }
 
 .title {
@@ -22,7 +40,6 @@
     font-size: 3rem;
   }
 
-  // Effet sur la première lettre : plus grande, en blanc pour contraster
   &::first-letter {
     font-size: 1.3em;
     color: $color-text;
@@ -33,6 +50,108 @@
   color: $color-text-muted;
   font-size: $font-size-lg;
   max-width: 60ch;
+  margin-bottom: $space-6;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  @include from-tablet {
+    flex-direction: row;
+  }
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: $space-3 $space-6;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ctaPrimary {
+  background-color: $color-primary;
+  color: $color-background;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-primary-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 2px;
+  }
+}
+
+.ctaSecondary {
+  background-color: transparent;
+  color: $color-text;
+  border: 1px solid $color-border;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.section {
+  margin-block: $space-12;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-4;
+
+  h2 {
+    font-size: $font-size-xl;
+    color: $color-text;
+    text-transform: uppercase;
+  }
+}
+
+.sectionLink {
+  color: $color-primary;
+  text-decoration: none;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.previewGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include from-tablet {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .footer {
