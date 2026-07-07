@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   description:
     "Explorez un catalogue de mangas et des lieux incontournables du Japon.",
   metadataBase: new URL("http://localhost:3000"),
+  openGraph: {
+    title: "Japan Manga Explorer",
+    description:
+      "Explorez un catalogue de mangas et des lieux incontournables du Japon.",
+    type: "website",
+    locale: "fr_FR",
+  },
 };
 
 type RootLayoutProps = {
@@ -27,7 +34,12 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="fr" className={poppins.variable}>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

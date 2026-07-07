@@ -34,3 +34,22 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+// Lien d'évitement (accessibilité) : invisible par défaut, apparaît
+// uniquement à la navigation clavier (Tab), avant tout le reste du contenu
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background-color: $color-primary;
+  color: $color-background;
+  padding: $space-2 $space-4;
+  border-radius: $radius-sm;
+  font-weight: 600;
+
+  &:focus-visible {
+    left: $space-2;
+    top: $space-2;
+  }
+}
