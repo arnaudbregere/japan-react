@@ -36,3 +36,10 @@
   white-space: nowrap;
   border: 0;
 }
+
+
+@mixin container {
+  width: 100%;
+  max-width: $content-max-width;
+  margin-inline: auto;
+}
