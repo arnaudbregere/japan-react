@@ -8,24 +8,31 @@
     display: block;
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 420px;
   }
 }
 
 .sun {
   fill: $color-primary;
-  opacity: 0.9;
 }
 
-.mountain {
-  fill: $color-surface;
+.sunShadow {
+  fill: $color-primary-dark;
 }
 
-.mountainSnow {
+.road {
   fill: $color-text;
-  opacity: 0.15;
+  opacity: 0.85;
 }
 
-.torii {
+.clouds {
+  fill: $color-text;
+}
+
+.cloudsShadow {
+  fill: $color-border;
+}
+
+.baseLine {
   fill: $color-primary;
 }
