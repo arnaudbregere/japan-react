@@ -4,7 +4,7 @@ import Header from "@/components/Header/Header";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import LieuCard from "@/components/LieuCard/LieuCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
-import { fetchMangas } from "@/lib/api/jikan";
+import { fetchMangas } from "@/lib/api/anilist";
 import { fetchLieux } from "@/lib/api/wikidata";
 import styles from "./HomePage.module.scss";
 

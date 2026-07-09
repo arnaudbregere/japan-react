@@ -1,21 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
+images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.myanimelist.net",
-      },
-      {
-        protocol: "https",
-        hostname: "commons.wikimedia.org",
-      },
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
+      { protocol: "https", hostname: "s4.anilist.co" },
     ],
-  },
+  }
 };
 
 export default nextConfig;

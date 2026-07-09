@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchForm from "@/components/SearchForm/SearchForm";
-import { fetchMangas } from "@/lib/api/jikan";
+import { fetchMangas } from "@/lib/api/anilist";
 import styles from "./MangasPage.module.scss";
 
 export const metadata: Metadata = {
