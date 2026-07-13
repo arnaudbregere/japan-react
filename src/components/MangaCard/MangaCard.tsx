@@ -4,9 +4,10 @@ import styles from "./MangaCard.module.scss";
 
 type MangaCardProps = {
   manga: Manga;
+  eager?: boolean;
 };
 
-export default function MangaCard({ manga }: MangaCardProps) {
+export default function MangaCard({ manga, eager = false }: MangaCardProps) {
   return (
     <article className={styles.card}>
       {manga.imageUrl ? (
@@ -16,6 +17,7 @@ export default function MangaCard({ manga }: MangaCardProps) {
           width={200}
           height={280}
           className={styles.image}
+          loading={eager ? "eager" : "lazy"}
         />
       ) : (
         <div className={styles.imagePlaceholder} aria-hidden="true" />

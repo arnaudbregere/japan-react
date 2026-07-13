@@ -40,9 +40,9 @@ export default async function MangasPage({ searchParams }: MangasPageProps) {
           </p>
         ) : (
           <ul className={styles.list}>
-            {mangas.map((manga) => (
+            {mangas.map((manga, index) => (
               <li key={manga.id}>
-                <MangaCard manga={manga} />
+                <MangaCard manga={manga} eager={index < 4} />
               </li>
             ))}
           </ul>

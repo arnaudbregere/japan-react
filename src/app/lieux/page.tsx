@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
 import LieuCard from "@/components/LieuCard/LieuCard";
-import { fetchLieux } from "@/lib/api/wikidata";
+import { fetchLieux } from "@/lib/api/wikipedia";
 import styles from "./LieuxPage.module.scss";
 import Link from "next/link";
 
@@ -18,9 +18,8 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
   const params = await searchParams;
   const currentPage = Number(params.page ?? "1");
 
-  const lieux = await fetchLieux({ page: currentPage });
-  const hasNextPage = lieux.length > 0;
-  const hasPreviousPage = currentPage > 1;
+  const { data: lieux, pagination } = await fetchLieux({ page: currentPage });
+  const hasPreviousPage = pagination.currentPage > 1;
 
   return (
     <>
@@ -35,7 +34,7 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
           <ul className={styles.list}>
             {lieux.map((lieu, index) => (
               <li key={lieu.id}>
-                <LieuCard lieu={lieu} priority={index < 4} />
+                <LieuCard lieu={lieu} eager={index < 4} />
               </li>
             ))}
           </ul>
@@ -43,17 +42,17 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
 
         <nav className={styles.pagination} aria-label="Pagination des lieux">
           {hasPreviousPage ? (
-            <Link href={`/lieux?page=${currentPage - 1}`} className={styles.link}>
+            <Link href={`/lieux?page=${pagination.currentPage - 1}`} className={styles.link}>
               ← Page précédente
             </Link>
           ) : (
             <span className={styles.linkDisabled}>← Page précédente</span>
           )}
 
-          <span className={styles.current}>Page {currentPage}</span>
+          <span className={styles.current}>Page {pagination.currentPage}</span>
 
-          {hasNextPage ? (
-            <Link href={`/lieux?page=${currentPage + 1}`} className={styles.link}>
+          {pagination.hasNextPage ? (
+            <Link href={`/lieux?page=${pagination.currentPage + 1}`} className={styles.link}>
               Page suivante →
             </Link>
           ) : (

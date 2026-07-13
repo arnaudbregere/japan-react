@@ -5,7 +5,7 @@ import MangaCard from "@/components/MangaCard/MangaCard";
 import LieuCard from "@/components/LieuCard/LieuCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
 import { fetchMangas } from "@/lib/api/anilist";
-import { fetchLieux } from "@/lib/api/wikidata";
+import { fetchLieux } from "@/lib/api/wikipedia";
 import styles from "./HomePage.module.scss";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [{ data: mangas }, lieux] = await Promise.all([
+  const [{ data: mangas }, { data: lieux }] = await Promise.all([
     fetchMangas({ page: 1 }),
     fetchLieux({ page: 1 }),
   ]);
@@ -55,9 +55,9 @@ export default async function HomePage() {
             </Link>
           </div>
           <ul className={styles.previewGrid}>
-            {featuredMangas.map((manga) => (
+            {featuredMangas.map((manga, index) => (
               <li key={manga.id}>
-                <MangaCard manga={manga} />
+                <MangaCard manga={manga} eager={index < 2} />
               </li>
             ))}
           </ul>
@@ -73,7 +73,7 @@ export default async function HomePage() {
           <ul className={styles.previewGrid}>
             {featuredLieux.map((lieu, index) => (
               <li key={lieu.id}>
-                <LieuCard lieu={lieu} priority={index < 2} />
+                <LieuCard lieu={lieu} eager={index < 2} />
               </li>
             ))}
           </ul>
