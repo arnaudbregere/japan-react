@@ -2,19 +2,21 @@ import Link from "next/link";
 import styles from "./Pagination.module.scss";
 
 type PaginationProps = {
+  basePath: string;
   currentPage: number;
   hasNextPage: boolean;
-  query: string;
+  query?: string;
 };
 
-function buildPageUrl(page: number, query: string): string {
+function buildPageUrl(basePath: string, page: number, query?: string): string {
   const params = new URLSearchParams();
   if (query) params.set("q", query);
   params.set("page", String(page));
-  return `/mangas?${params.toString()}`;
+  return `${basePath}?${params.toString()}`;
 }
 
 export default function Pagination({
+  basePath,
   currentPage,
   hasNextPage,
   query,
@@ -28,7 +30,7 @@ export default function Pagination({
   return (
     <nav className={styles.pagination} aria-label="Pagination des résultats">
       {hasPreviousPage ? (
-        <Link href={buildPageUrl(currentPage - 1, query)} className={styles.link}>
+        <Link href={buildPageUrl(basePath, currentPage - 1, query)} className={styles.link}>
           ← Page précédente
         </Link>
       ) : (
@@ -38,7 +40,7 @@ export default function Pagination({
       <span className={styles.current}>Page {currentPage}</span>
 
       {hasNextPage ? (
-        <Link href={buildPageUrl(currentPage + 1, query)} className={styles.link}>
+        <Link href={buildPageUrl(basePath, currentPage + 1, query)} className={styles.link}>
           Page suivante →
         </Link>
       ) : (

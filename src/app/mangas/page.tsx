@@ -49,6 +49,7 @@ export default async function MangasPage({ searchParams }: MangasPageProps) {
         )}
 
         <Pagination
+          basePath="/mangas"
           currentPage={pagination.currentPage}
           hasNextPage={pagination.hasNextPage}
           query={query}

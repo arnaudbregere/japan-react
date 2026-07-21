@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
 import LieuCard from "@/components/LieuCard/LieuCard";
+import Pagination from "@/components/Pagination/Pagination";
 import { fetchLieux } from "@/lib/api/wikipedia";
 import styles from "./LieuxPage.module.scss";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Lieux au Japon",
@@ -19,7 +19,6 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
   const currentPage = Number(params.page ?? "1");
 
   const { data: lieux, pagination } = await fetchLieux({ page: currentPage });
-  const hasPreviousPage = pagination.currentPage > 1;
 
   return (
     <>
@@ -40,25 +39,11 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
           </ul>
         )}
 
-        <nav className={styles.pagination} aria-label="Pagination des lieux">
-          {hasPreviousPage ? (
-            <Link href={`/lieux?page=${pagination.currentPage - 1}`} className={styles.link}>
-              ← Page précédente
-            </Link>
-          ) : (
-            <span className={styles.linkDisabled}>← Page précédente</span>
-          )}
-
-          <span className={styles.current}>Page {pagination.currentPage}</span>
-
-          {pagination.hasNextPage ? (
-            <Link href={`/lieux?page=${pagination.currentPage + 1}`} className={styles.link}>
-              Page suivante →
-            </Link>
-          ) : (
-            <span className={styles.linkDisabled}>Page suivante →</span>
-          )}
-        </nav>
+        <Pagination
+          basePath="/lieux"
+          currentPage={pagination.currentPage}
+          hasNextPage={pagination.hasNextPage}
+        />
       </main>
 
       <footer className={styles.footer}>
