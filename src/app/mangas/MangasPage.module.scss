@@ -2,12 +2,7 @@
 @use "../../styles/mixins" as *;
 
 .main {
-  @include container;
-  padding: $space-6 $space-4;
-
-  @include from-tablet {
-    padding: $space-8;
-  }
+  @include page-main;
 }
 
 .title {
@@ -18,18 +13,7 @@
 }
 
 .list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: $space-4;
-
-  @include from-tablet {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include from-desktop {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  @include card-grid($tablet-cols: 3, $desktop-cols: 4);
 }
 
 .empty {
@@ -38,9 +22,5 @@
 }
 
 .footer {
-  padding: $space-4;
-  border-top: 1px solid $color-border;
-  color: $color-text-muted;
-  font-size: $font-size-sm;
-  text-align: center;
+  @include page-footer;
 }
