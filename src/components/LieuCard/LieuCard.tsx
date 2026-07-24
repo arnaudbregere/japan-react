@@ -11,6 +11,9 @@ export default function LieuCard({ lieu, eager = false }: LieuCardProps) {
   return (
     <article className={styles.card}>
       {lieu.imageUrl ? (
+        // unoptimized : l'optimiseur d'images Next se fait rate-limiter (429)
+        // par Wikimedia sur les requêtes automatisées. On sert le thumbnail
+        // brut renvoyé par l'API Wikipédia plutôt que de passer par /_next/image.
         <Image
           src={lieu.imageUrl}
           alt={`Photo de ${lieu.nom}`}

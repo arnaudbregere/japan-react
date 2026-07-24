@@ -4,6 +4,7 @@ import LieuCard from "@/components/LieuCard/LieuCard";
 import Pagination from "@/components/Pagination/Pagination";
 import { fetchLieux } from "@/lib/api/wikipedia";
 import styles from "./LieuxPage.module.scss";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Lieux au Japon",
@@ -46,9 +47,7 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
         />
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 Japan Manga Explorer</p>
-      </footer>
+      <Footer/>
     </>
   );
 }

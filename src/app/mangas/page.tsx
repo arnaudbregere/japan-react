@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchForm from "@/components/SearchForm/SearchForm";
@@ -56,9 +57,7 @@ export default async function MangasPage({ searchParams }: MangasPageProps) {
         />
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 Japan Manga Explorer</p>
-      </footer>
+      <Footer />
     </>
   );
 }

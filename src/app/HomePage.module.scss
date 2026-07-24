@@ -142,7 +142,3 @@
 .previewGrid {
   @include card-grid($tablet-cols: 4);
 }
-
-.footer {
-  @include page-footer;
-}

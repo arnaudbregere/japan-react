@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import LieuCard from "@/components/LieuCard/LieuCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
@@ -80,9 +81,7 @@ export default async function HomePage() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 Japan Manga Explorer</p>
-      </footer>
+      <Footer />
     </>
   );
 }
