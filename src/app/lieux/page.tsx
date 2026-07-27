@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
 import LocationCard from "@/components/LocationCard/LocationCard";
 import Pagination from "@/components/Pagination/Pagination";
-import { fetchLieux } from "@/lib/api/wikipedia";
-import styles from "./LieuxPage.module.scss";
+import { fetchLocations } from "@/lib/api/wikipedia";
+import styles from "./LocationPage.module.scss";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
   const params = await searchParams;
   const currentPage = Number(params.page ?? "1");
 
-  const { data: locations, pagination } = await fetchLieux({ page: currentPage });
+  const { data: locations, pagination } = await fetchLocations({ page: currentPage });
 
   return (
     <>

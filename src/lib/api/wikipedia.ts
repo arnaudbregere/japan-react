@@ -1,6 +1,6 @@
 import type { Location, LocationListResponse } from "@/types/location";
 import type {
-  FetchLieuxParams,
+  FetchLocationsParams,
   WikipediaPage,
   WikipediaQueryResponse,
   WikipediaTitleMapping,
@@ -8,7 +8,7 @@ import type {
 import { JAPAN_PLACES_WIKIPEDIA_TITLES } from "./japan-places";
 
 const WIKIPEDIA_ENDPOINT = "https://fr.wikipedia.org/w/api.php";
-const LIEUX_PER_PAGE = 12;
+const LOCATIONS_PER_PAGE = 12;
 
 // L'API MediaWiki peut renommer un titre demandé (normalisation d'accents,
 // résolution de redirection) avant de le faire correspondre à une page.
@@ -35,14 +35,16 @@ function resolveFinalTitle(
   return current;
 }
 
-export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<LocationListResponse> {
+export async function fetchLocations({
+  page = 1,
+}: FetchLocationsParams): Promise<LocationListResponse> {
   const totalTitles = JAPAN_PLACES_WIKIPEDIA_TITLES.length;
-  const lastVisiblePage = Math.max(1, Math.ceil(totalTitles / LIEUX_PER_PAGE));
+  const lastVisiblePage = Math.max(1, Math.ceil(totalTitles / LOCATIONS_PER_PAGE));
 
-  const startIndex = (page - 1) * LIEUX_PER_PAGE;
+  const startIndex = (page - 1) * LOCATIONS_PER_PAGE;
   const titlesForPage = JAPAN_PLACES_WIKIPEDIA_TITLES.slice(
     startIndex,
-    startIndex + LIEUX_PER_PAGE,
+    startIndex + LOCATIONS_PER_PAGE,
   );
 
   const pagination = {
@@ -115,7 +117,7 @@ export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<Locati
     }
   }
 
-  const lieux: Location[] = [];
+  const locations: Location[] = [];
   for (const wikiPage of orderedPages) {
     if (wikiPage.missing) {
       console.warn(`[wikipedia] Page marquée manquante, ignorée : "${wikiPage.title}"`);
@@ -124,7 +126,7 @@ export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<Locati
 
     const coordinate = wikiPage.coordinates?.find((c) => c.primary) ?? wikiPage.coordinates?.[0];
 
-    lieux.push({
+    locations.push({
       id: String(wikiPage.pageid),
       name: wikiPage.title,
       description: wikiPage.extract?.trim() || "Aucune description disponible.",
@@ -134,5 +136,5 @@ export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<Locati
     });
   }
 
-  return { data: lieux, pagination };
+  return { data: locations, pagination };
 }

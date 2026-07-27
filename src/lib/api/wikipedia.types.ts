@@ -36,6 +36,6 @@ export type WikipediaQueryResponse = {
   };
 };
 
-export type FetchLieuxParams = {
+export type FetchLocationsParams = {
   page?: number;
 };

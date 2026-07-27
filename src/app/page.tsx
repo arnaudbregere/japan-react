@@ -6,7 +6,7 @@ import MangaCard from "@/components/MangaCard/MangaCard";
 import LocationCard from "@/components/LocationCard/LocationCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
 import { fetchMangas } from "@/lib/api/anilist";
-import { fetchLieux } from "@/lib/api/wikipedia";
+import { fetchLocations } from "@/lib/api/wikipedia";
 import styles from "./HomePage.module.scss";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const [{ data: mangas }, { data: locations }] = await Promise.all([
     fetchMangas({ page: 1 }),
-    fetchLieux({ page: 1 }),
+    fetchLocations({ page: 1 }),
   ]);
 
   const featuredMangas = mangas.slice(0, 4);
