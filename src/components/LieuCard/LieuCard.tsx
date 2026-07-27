@@ -1,9 +1,9 @@
 import Image from "next/image";
-import type { Lieu } from "@/types/lieu";
+import type { Location } from "@/types/location";
 import styles from "./LieuCard.module.scss";
 
 type LieuCardProps = {
-  lieu: Lieu;
+  lieu: Location;
   eager?: boolean;
 };
 
@@ -16,7 +16,7 @@ export default function LieuCard({ lieu, eager = false }: LieuCardProps) {
         // brut renvoyé par l'API Wikipédia plutôt que de passer par /_next/image.
         <Image
           src={lieu.imageUrl}
-          alt={`Photo de ${lieu.nom}`}
+          alt={`Photo de ${lieu.name}`}
           width={280}
           height={200}
           className={styles.image}
@@ -28,7 +28,7 @@ export default function LieuCard({ lieu, eager = false }: LieuCardProps) {
       )}
 
       <div className={styles.content}>
-        <h2 className={styles.title}>{lieu.nom}</h2>
+        <h2 className={styles.title}>{lieu.name}</h2>
         <p className={styles.description}>{lieu.description}</p>
       </div>
     </article>

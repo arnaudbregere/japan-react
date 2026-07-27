@@ -1,14 +1,14 @@
-export type Lieu = {
+export type Location = {
   id: string;
-  nom: string;
+  name: string;
   description: string;
   latitude: number;
   longitude: number;
   imageUrl: string | null;
 };
 
-export type LieuListResponse = {
-  data: Lieu[];
+export type LocationListResponse = {
+  data: Location[];
   pagination: {
     currentPage: number;
     hasNextPage: boolean;

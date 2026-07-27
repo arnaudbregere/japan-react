@@ -1,4 +1,4 @@
-import type { Lieu, LieuListResponse } from "@/types/lieu";
+import type { Location, LocationListResponse } from "@/types/location";
 import type {
   FetchLieuxParams,
   WikipediaPage,
@@ -35,7 +35,7 @@ function resolveFinalTitle(
   return current;
 }
 
-export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<LieuListResponse> {
+export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<LocationListResponse> {
   const totalTitles = JAPAN_PLACES_WIKIPEDIA_TITLES.length;
   const lastVisiblePage = Math.max(1, Math.ceil(totalTitles / LIEUX_PER_PAGE));
 
@@ -115,7 +115,7 @@ export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<LieuLi
     }
   }
 
-  const lieux: Lieu[] = [];
+  const lieux: Location[] = [];
   for (const wikiPage of orderedPages) {
     if (wikiPage.missing) {
       console.warn(`[wikipedia] Page marquée manquante, ignorée : "${wikiPage.title}"`);
@@ -126,7 +126,7 @@ export async function fetchLieux({ page = 1 }: FetchLieuxParams): Promise<LieuLi
 
     lieux.push({
       id: String(wikiPage.pageid),
-      nom: wikiPage.title,
+      name: wikiPage.title,
       description: wikiPage.extract?.trim() || "Aucune description disponible.",
       latitude: coordinate?.lat ?? 0,
       longitude: coordinate?.lon ?? 0,
