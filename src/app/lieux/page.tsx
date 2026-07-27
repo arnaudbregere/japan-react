@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header/Header";
-import LieuCard from "@/components/LieuCard/LieuCard";
+import LocationCard from "@/components/LocationCard/LocationCard";
 import Pagination from "@/components/Pagination/Pagination";
 import { fetchLieux } from "@/lib/api/wikipedia";
 import styles from "./LieuxPage.module.scss";
@@ -19,7 +19,7 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
   const params = await searchParams;
   const currentPage = Number(params.page ?? "1");
 
-  const { data: lieux, pagination } = await fetchLieux({ page: currentPage });
+  const { data: locations, pagination } = await fetchLieux({ page: currentPage });
 
   return (
     <>
@@ -28,13 +28,13 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
       <main className={styles.main}>
         <h1 className={styles.title}>Lieux incontournables du Japon</h1>
 
-        {lieux.length === 0 ? (
+        {locations.length === 0 ? (
           <p className={styles.empty}>Aucun lieu trouvé pour cette page.</p>
         ) : (
           <ul className={styles.list}>
-            {lieux.map((lieu, index) => (
-              <li key={lieu.id}>
-                <LieuCard lieu={lieu} eager={index < 4} />
+            {locations.map((location, index) => (
+              <li key={location.id}>
+                <LocationCard location={location} eager={index < 4} />
               </li>
             ))}
           </ul>

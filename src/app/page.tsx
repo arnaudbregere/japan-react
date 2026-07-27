@@ -3,7 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import MangaCard from "@/components/MangaCard/MangaCard";
-import LieuCard from "@/components/LieuCard/LieuCard";
+import LocationCard from "@/components/LocationCard/LocationCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
 import { fetchMangas } from "@/lib/api/anilist";
 import { fetchLieux } from "@/lib/api/wikipedia";
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [{ data: mangas }, { data: lieux }] = await Promise.all([
+  const [{ data: mangas }, { data: locations }] = await Promise.all([
     fetchMangas({ page: 1 }),
     fetchLieux({ page: 1 }),
   ]);
 
   const featuredMangas = mangas.slice(0, 4);
-  const featuredLieux = lieux.slice(0, 4);
+  const featuredLocations = locations.slice(0, 4);
 
   return (
     <>
@@ -72,9 +72,9 @@ export default async function HomePage() {
             </Link>
           </div>
           <ul className={styles.previewGrid}>
-            {featuredLieux.map((lieu, index) => (
-              <li key={lieu.id}>
-                <LieuCard lieu={lieu} eager={index < 2} />
+            {featuredLocations.map((location, index) => (
+              <li key={location.id}>
+                <LocationCard location={location} eager={index < 2} />
               </li>
             ))}
           </ul>
