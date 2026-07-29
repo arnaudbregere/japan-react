@@ -43,7 +43,7 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/lieux" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>
+            <Link href="/locations" className={styles.menuLink} onClick={() => setIsMenuOpen(false)}>
               Lieux au Japon
             </Link>
           </li>

@@ -40,7 +40,7 @@ export default async function HomePage() {
               <Link href="/mangas" className={styles.ctaPrimary}>
                 Explorer les mangas
               </Link>
-              <Link href="/lieux" className={styles.ctaSecondary}>
+              <Link href="/locations" className={styles.ctaSecondary}>
                 Découvrir le Japon
               </Link>
             </div>
@@ -64,10 +64,10 @@ export default async function HomePage() {
           </ul>
         </section>
 
-        <section aria-labelledby="lieux-heading" className={styles.section}>
+        <section aria-labelledby="locations-heading" className={styles.section}>
           <div className={styles.sectionHeader}>
-            <h2 id="lieux-heading">Lieux incontournables</h2>
-            <Link href="/lieux" className={styles.sectionLink}>
+            <h2 id="locations-heading">Lieux incontournables</h2>
+            <Link href="/locations" className={styles.sectionLink}>
               Voir tous les lieux →
             </Link>
           </div>

@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import LocationCard from "@/components/LocationCard/LocationCard";
 import Pagination from "@/components/Pagination/Pagination";
 import { fetchLocations } from "@/lib/api/wikipedia";
-import styles from "./LocationPage.module.scss";
+import styles from "./LocationsPage.module.scss";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description: "Découvrez les lieux incontournables à visiter au Japon.",
 };
 
-type LieuxPageProps = {
+type LocationsPageProps = {
   searchParams: Promise<{ page?: string }>;
 };
 
-export default async function LieuxPage({ searchParams }: LieuxPageProps) {
+export default async function LocationsPage({ searchParams }: LocationsPageProps) {
   const params = await searchParams;
   const currentPage = Number(params.page ?? "1");
 
@@ -41,7 +41,7 @@ export default async function LieuxPage({ searchParams }: LieuxPageProps) {
         )}
 
         <Pagination
-          basePath="/lieux"
+          basePath="/locations"
           currentPage={pagination.currentPage}
           hasNextPage={pagination.hasNextPage}
         />
