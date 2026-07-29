@@ -13,9 +13,7 @@ export default function Header() {
       <nav className={styles.nav} aria-label="Navigation principale">
         <div className={styles.bar}>
         <Link href="/" className={styles.logo} onClick={() => setIsMenuOpen(false)}>
-          <span className={styles.logoIcon}>
-            <Logo />
-          </span>
+          <Logo />
           <span className={styles.logoText}>Japan Manga Explorer</span>
         </Link>
 
