@@ -22,6 +22,7 @@ export default function LocationCard({ location, eager = false }: LocationCardPr
           className={styles.image}
           unoptimized
           loading={eager ? "eager" : "lazy"}
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
         />
       ) : (
         <div className={styles.imagePlaceholder} aria-hidden="true" />

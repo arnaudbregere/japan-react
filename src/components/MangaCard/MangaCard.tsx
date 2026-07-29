@@ -18,6 +18,7 @@ export default function MangaCard({ manga, eager = false }: MangaCardProps) {
           height={280}
           className={styles.image}
           loading={eager ? "eager" : "lazy"}
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
         />
       ) : (
         <div className={styles.imagePlaceholder} aria-hidden="true" />
