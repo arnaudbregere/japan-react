@@ -142,3 +142,8 @@
 .previewGrid {
   @include card-grid($tablet-cols: 4);
 }
+
+.sectionError {
+  color: $color-text-muted;
+  padding: $space-8 0;
+}

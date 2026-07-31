@@ -7,6 +7,8 @@ import LocationCard from "@/components/LocationCard/LocationCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
 import { fetchMangas } from "@/lib/api/anilist";
 import { fetchLocations } from "@/lib/api/wikipedia";
+import type { Manga } from "@/types/manga";
+import type { Location } from "@/types/location";
 import styles from "./HomePage.module.scss";
 
 export const metadata: Metadata = {
@@ -14,13 +16,24 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [{ data: mangas }, { data: locations }] = await Promise.all([
+  const [mangasResult, locationsResult] = await Promise.allSettled([
     fetchMangas({ page: 1 }),
     fetchLocations({ page: 1 }),
   ]);
 
-  const featuredMangas = mangas.slice(0, 4);
-  const featuredLocations = locations.slice(0, 4);
+  let featuredMangas: Manga[] = [];
+  if (mangasResult.status === "fulfilled") {
+    featuredMangas = mangasResult.value.data.slice(0, 4);
+  } else {
+    console.error("[home] Échec du chargement des mangas", mangasResult.reason);
+  }
+
+  let featuredLocations: Location[] = [];
+  if (locationsResult.status === "fulfilled") {
+    featuredLocations = locationsResult.value.data.slice(0, 4);
+  } else {
+    console.error("[home] Échec du chargement des lieux", locationsResult.reason);
+  }
 
   return (
     <>
@@ -55,13 +68,19 @@ export default async function HomePage() {
               Voir tous les mangas →
             </Link>
           </div>
-          <ul className={styles.previewGrid}>
-            {featuredMangas.map((manga, index) => (
-              <li key={manga.id}>
-                <MangaCard manga={manga} eager={index < 2} />
-              </li>
-            ))}
-          </ul>
+          {mangasResult.status === "rejected" ? (
+            <p className={styles.sectionError}>
+              Les mangas populaires sont temporairement indisponibles.
+            </p>
+          ) : (
+            <ul className={styles.previewGrid}>
+              {featuredMangas.map((manga, index) => (
+                <li key={manga.id}>
+                  <MangaCard manga={manga} eager={index < 2} />
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         <section aria-labelledby="locations-heading" className={styles.section}>
@@ -71,13 +90,19 @@ export default async function HomePage() {
               Voir tous les lieux →
             </Link>
           </div>
-          <ul className={styles.previewGrid}>
-            {featuredLocations.map((location, index) => (
-              <li key={location.id}>
-                <LocationCard location={location} eager={index < 2} />
-              </li>
-            ))}
-          </ul>
+          {locationsResult.status === "rejected" ? (
+            <p className={styles.sectionError}>
+              Les lieux incontournables sont temporairement indisponibles.
+            </p>
+          ) : (
+            <ul className={styles.previewGrid}>
+              {featuredLocations.map((location, index) => (
+                <li key={location.id}>
+                  <LocationCard location={location} eager={index < 2} />
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       </main>
 
