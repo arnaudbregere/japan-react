@@ -5,16 +5,31 @@ import MangaCard from "@/components/MangaCard/MangaCard";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import { fetchMangas } from "@/lib/api/anilist";
+import { buildCanonicalUrl } from "@/utils/seo/buildCanonicalUrl";
 import styles from "./MangasPage.module.scss";
-
-export const metadata: Metadata = {
-  title: "Mangas",
-  description: "Recherchez et découvrez des mangas parmi des milliers de titres.",
-};
 
 type MangasPageProps = {
   searchParams: Promise<{ q?: string; page?: string }>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: MangasPageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const query = params.q ?? "";
+  const currentPage = Number(params.page ?? "1");
+
+  return {
+    title: "Mangas",
+    description: "Recherchez et découvrez des mangas parmi des milliers de titres.",
+    alternates: {
+      canonical: buildCanonicalUrl("/mangas", {
+        q: query || undefined,
+        page: currentPage > 1 ? currentPage : undefined,
+      }),
+    },
+  };
+}
 
 export default async function MangasPage({ searchParams }: MangasPageProps) {
   const params = await searchParams;
