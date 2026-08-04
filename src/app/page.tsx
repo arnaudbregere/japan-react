@@ -5,7 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import LocationCard from "@/components/LocationCard/LocationCard";
 import HeroIllustration from "@/components/HeroIllustration/HeroIllustration";
-import { fetchMangas } from "@/lib/api/anilist";
+import { fetchMangas } from "@/lib/api/anilist-list";
 import { fetchLocations } from "@/lib/api/wikipedia";
 import type { Manga } from "@/types/manga";
 import type { Location } from "@/types/location";

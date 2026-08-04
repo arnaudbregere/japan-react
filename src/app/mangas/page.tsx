@@ -4,7 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import MangaCard from "@/components/MangaCard/MangaCard";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchForm from "@/components/SearchForm/SearchForm";
-import { fetchMangas } from "@/lib/api/anilist";
+import { fetchMangas } from "@/lib/api/anilist-list";
 import { buildCanonicalUrl } from "@/utils/seo/buildCanonicalUrl";
 import styles from "./MangasPage.module.scss";
 

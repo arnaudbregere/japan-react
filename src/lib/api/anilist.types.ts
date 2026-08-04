@@ -24,6 +24,34 @@ export type AniListMediaRaw = {
   genres: string[];
 };
 
+export type AniListFuzzyDate = {
+  year: number | null;
+  month: number | null;
+  day: number | null;
+};
+
+export type AniListStaffEdge = {
+  role: string;
+  node: {
+    name: {
+      full: string;
+    };
+  };
+};
+
+export type AniListMediaDetailRaw = AniListMediaRaw & {
+  bannerImage: string | null;
+  format: string | null;
+  chapters: number | null;
+  volumes: number | null;
+  startDate: AniListFuzzyDate;
+  endDate: AniListFuzzyDate;
+  staff: {
+    edges: AniListStaffEdge[];
+  };
+  siteUrl: string;
+};
+
 export type AniListPageInfo = {
   currentPage: number;
   hasNextPage: boolean;
@@ -36,6 +64,13 @@ export type AniListPageResponse = {
       pageInfo: AniListPageInfo;
       media: AniListMediaRaw[];
     };
+  };
+  errors?: Array<{ message: string; status?: number }>;
+};
+
+export type AniListMediaDetailResponse = {
+  data: {
+    Media: AniListMediaDetailRaw | null;
   };
   errors?: Array<{ message: string; status?: number }>;
 };

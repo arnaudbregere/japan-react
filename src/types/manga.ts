@@ -8,6 +8,22 @@ export type Manga = {
   genres: string[];
 };
 
+export type MangaStaffMember = {
+  role: string;
+  name: string;
+};
+
+export type MangaDetail = Manga & {
+  bannerImageUrl: string | null;
+  format: string | null;
+  chapters: number | null;
+  volumes: number | null;
+  startDateLabel: string | null;
+  endDateLabel: string | null;
+  staff: MangaStaffMember[];
+  siteUrl: string;
+};
+
 export type MangaListResponse = {
   data: Manga[];
   pagination: {

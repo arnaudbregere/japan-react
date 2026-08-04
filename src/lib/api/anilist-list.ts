@@ -1,21 +1,8 @@
-import type { Manga, MangaListResponse } from "@/types/manga";
-import type {
-  AniListMediaRaw,
-  AniListMediaStatus,
-  AniListPageResponse,
-  FetchMangasParams,
-} from "./anilist.types";
+import type { MangaListResponse } from "@/types/manga";
+import type { AniListPageResponse, FetchMangasParams } from "./anilist.types";
+import { ANILIST_ENDPOINT, mapAniListMediaToManga } from "./anilist-shared";
 
-const ANILIST_ENDPOINT = "https://graphql.anilist.co";
 const MANGAS_PER_PAGE = 12;
-
-const STATUS_LABELS: Record<AniListMediaStatus, string> = {
-  FINISHED: "Terminé",
-  RELEASING: "En cours",
-  NOT_YET_RELEASED: "À paraître",
-  CANCELLED: "Annulé",
-  HIATUS: "En pause",
-};
 
 const MANGA_QUERY = `
   query ($page: Int, $perPage: Int, $search: String, $sort: [MediaSort]) {
@@ -42,34 +29,6 @@ const MANGA_QUERY = `
     }
   }
 `;
-
-function stripHtml(text: string | null): string | null {
-  if (!text) return null;
-
-  const withoutTags = text.replace(/<[^>]*>/g, " ");
-  const decoded = withoutTags
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
-
-  const normalized = decoded.replace(/\s+/g, " ").trim();
-  return normalized || null;
-}
-
-function mapAniListMediaToManga(raw: AniListMediaRaw): Manga {
-  return {
-    id: raw.id,
-    title: raw.title.english ?? raw.title.romaji,
-    synopsis: stripHtml(raw.description),
-    imageUrl: raw.coverImage.large,
-    score: raw.averageScore !== null ? raw.averageScore / 10 : null,
-    status: STATUS_LABELS[raw.status] ?? raw.status,
-    genres: raw.genres,
-  };
-}
 
 export async function fetchMangas({
   query,
