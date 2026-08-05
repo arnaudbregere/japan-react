@@ -22,8 +22,8 @@ export default function SearchForm({ defaultQuery }: SearchFormProps) {
   }
 
   return (
-    <form role="search" className={styles.form} onSubmit={handleSubmit}>
-      <label htmlFor="manga-search" className={styles.label}>
+    <form role="search" className={styles["search-manga-form"]} onSubmit={handleSubmit}>
+      <label htmlFor="manga-search" className={styles["search-manga-label"]}>
         Rechercher un manga
       </label>
       <input
