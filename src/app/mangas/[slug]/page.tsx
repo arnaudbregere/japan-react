@@ -97,21 +97,24 @@ export default async function MangaDetailPage({
           ← Retour aux mangas
         </Link>
 
-        <div className={styles.layout}>
-        <div className={styles.coverWrapper}>
+        <article className={styles.layout}>
           {manga.imageUrl ? (
-            <Image
-              src={manga.imageUrl}
-              alt={`Couverture de ${manga.title}`}
-              fill
-              priority
-              className={styles.cover}
-              sizes="(min-width: 768px) 300px, 60vw"
-            />
+            <figure className={styles.coverWrapper}>
+              <Image
+                src={manga.imageUrl}
+                alt={`Couverture de ${manga.title}`}
+                fill
+                priority
+                className={styles.cover}
+                sizes="(min-width: 768px) 300px, 100vw"
+              />
+            </figure>
           ) : (
-            <div className={styles.coverPlaceholder} aria-hidden="true" />
+            <div
+              className={styles.coverPlaceholder}
+              aria-hidden="true"
+            />
           )}
-        </div>
 
           <div className={styles.info}>
             <h1 className={styles.title}>{manga.title}</h1>
@@ -229,7 +232,7 @@ export default async function MangaDetailPage({
               </a>
             )}
           </div>
-        </div>
+        </article>
       </main>
 
       <Footer />
