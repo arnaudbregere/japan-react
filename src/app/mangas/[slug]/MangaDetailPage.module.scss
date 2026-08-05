@@ -1,0 +1,157 @@
+@use "../../../styles/tokens" as *;
+@use "../../../styles/mixins" as *;
+
+.main {
+  @include page-main;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: $color-primary;
+  text-decoration: none;
+  font-size: $font-size-sm;
+  margin-bottom: $space-6;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  @include from-tablet {
+    flex-direction: row;
+    gap: $space-8;
+  }
+}
+
+.coverWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 300 / 420;
+  border-radius: $radius-md;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.coverPlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: $color-border;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: $font-size-2xl;
+  color: $color-primary;
+  margin-bottom: $space-4;
+  line-height: 1.2;
+}
+
+.metaList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-3 $space-6;
+  margin-bottom: $space-6;
+
+  @include from-tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.metaItem {
+  dt {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    margin-bottom: $space-1;
+  }
+
+  dd {
+    color: $color-text;
+    font-weight: 600;
+  }
+}
+
+.genreList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  list-style: none;
+  margin-bottom: $space-6;
+}
+
+.genreBadge {
+  padding: $space-1 $space-3;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text;
+}
+
+.section {
+  margin-bottom: $space-6;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  color: $color-text;
+  text-transform: uppercase;
+  margin-bottom: $space-3;
+}
+
+.synopsis {
+  color: $color-text-muted;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.staffList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  color: $color-text-muted;
+
+  strong {
+    color: $color-text;
+  }
+}
+
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
