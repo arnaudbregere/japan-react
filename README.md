@@ -1,36 +1,231 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Japan Manga Explorer 🇯🇵
 
-## Getting Started
+## Présentation du projet
 
-First, run the development server:
+**Japan Manga Explorer** est une application web développée avec Next.js permettant d'explorer l'univers des mangas japonais et de découvrir des lieux emblématiques du Japon.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Le projet propose une expérience orientée découverte avec :
+- une liste de mangas alimentée par une API externe ;
+- une recherche de mangas ;
+- une pagination ;
+- une liste de lieux japonais ;
+- une interface responsive pensée pour une utilisation desktop et mobile first.
+
+L'objectif du projet est de proposer une application moderne, performante et accessible, tout en mettant en pratique les bonnes pratiques du développement frontend moderne avec React et Next.js.
+
+---
+
+# Technologies utilisées
+
+## Framework & langage
+
+- **Next.js 16**  
+  Framework React utilisé pour le rendu côté serveur (SSR), le routing basé sur l'App Router et l'optimisation des performances.
+
+- **React 19**  
+  Bibliothèque principale pour construire l'interface utilisateur avec une approche component-based.
+
+- **TypeScript**  
+  Utilisé pour renforcer la fiabilité du code grâce au typage statique.
+
+---
+
+## Styling
+
+- **SCSS**
+  - Organisation des styles par composants ;
+  - Utilisation de CSS Modules ;
+  - Variables et mixins globaux pour maintenir une architecture CSS scalable.
+
+---
+
+## APIs utilisées
+
+### AniList API
+
+Utilisée pour récupérer les données liées aux mangas :
+- titres ;
+- descriptions ;
+- images ;
+- informations générales ;
+- pagination.
+
+### Wikipedia API
+
+Utilisée pour récupérer les informations concernant les lieux japonais :
+- noms des lieux ;
+- descriptions ;
+- données culturelles.
+
+---
+
+## Outils de développement
+
+- ESLint
+- Next.js ESLint Configuration
+- npm
+- TypeScript Compiler
+
+---
+
+# Fonctionnalités
+
+## Exploration des mangas
+
+- Affichage d'une liste de mangas populaires ;
+- Recherche par nom ;
+- Pagination des résultats ;
+- Cartes manga réutilisables ;
+- Gestion des images optimisées.
+
+---
+
+## Découverte du Japon
+
+- Catalogue de lieux incontournables ;
+- Pagination des résultats ;
+- Présentation sous forme de cartes ;
+- Navigation dédiée aux destinations japonaises.
+
+---
+
+## Interface utilisateur
+
+- Header global ;
+- Footer global ;
+- Hero section avec illustration ;
+- Navigation claire ;
+- Design responsive ;
+- Composants réutilisables.
+
+---
+
+## SEO intégré
+
+Le projet possède déjà plusieurs optimisations SEO :
+
+- Metadata Next.js personnalisées ;
+- Titles dynamiques ;
+- Descriptions adaptées aux pages ;
+- URLs canoniques ;
+- Open Graph configuré ;
+- Structure HTML sémantique.
+
+---
+
+## Accessibilité
+
+Plusieurs bonnes pratiques sont déjà intégrées :
+
+- Langue du document définie en français ;
+- Présence d'un lien "skip navigation" ;
+- Utilisation de balises HTML sémantiques ;
+- Hiérarchie des titres (`h1`, `h2`) cohérente ;
+- Navigation basée sur des liens natifs ;
+- Composants structurés pour limiter les problèmes d'accessibilité.
+
+---
+
+# Architecture du site
+
+Le projet utilise l'architecture **Next.js App Router**.
+
+Structure principale :
+
+```
+src/
+│
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── mangas/
+│   │   └── page.tsx
+│   ├── locations/
+│   │   └── page.tsx
+│   └── globals.scss
+│
+├── components/
+│   ├── Header/
+│   ├── Footer/
+│   ├── MangaCard/
+│   ├── LocationCard/
+│   ├── SearchForm/
+│   ├── Pagination/
+│   ├── Logo/
+│   └── HeroIllustration/
+│
+├── lib/
+│   └── api/
+│       ├── anilist-list
+│       └── wikipedia
+│
+├── types/
+│   ├── manga.ts
+│   └── location.ts
+│
+├── utils/
+│   ├── seo/
+│   ├── slugify.ts
+│   └── mangaSlug.ts
+│
+└── styles/
+    ├── _tokens.scss
+    └── _mixins.scss
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Organisation des responsabilités
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## App Router (`src/app`)
 
-## Learn More
+Contient :
+- les routes ;
+- les pages ;
+- les layouts ;
+- les metadata SEO.
 
-To learn more about Next.js, take a look at the following resources:
+Chaque page récupère ses données côté serveur afin d'améliorer :
+- les performances ;
+- le référencement naturel ;
+- l'expérience utilisateur.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Components (`src/components`)
 
-## Deploy on Vercel
+Les composants sont isolés et réutilisables.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Exemples :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### MangaCard
+
+Responsable de l'affichage d'un manga :
+- image ;
+- titre ;
+- informations principales.
+
+### LocationCard
+
+Responsable de l'affichage d'un lieu japonais.
+
+### Pagination
+
+Gestion de la navigation entre les différentes pages de résultats.
+
+### SearchForm
+
+Gestion de la recherche utilisateur.
+
+---
+
+## API Layer (`src/lib/api`)
+
+Centralise les appels aux services externes.
+
+Avantages :
+- séparation claire entre données et interface ;
+- code plus facilement maintenable ;
+- possibilité de remplacer une source de données.
+
+---
